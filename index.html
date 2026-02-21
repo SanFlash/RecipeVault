@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RecipeVault | Admin Control Panel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="dark-theme admin-page">
+    <div id="canvas-container"></div>
+
+    <!-- Login Overlay -->
+    <div id="login-overlay" class="login-overlay active">
+        <div class="login-card glass">
+            <div class="login-header">
+                <i class="fas fa-lock"></i>
+                <h2>Admin Login</h2>
+                <p>Vault Access Required</p>
+            </div>
+            <div class="login-body">
+                <div class="form-group">
+                    <input type="text" id="login-user" placeholder="Username (admin)">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="login-pass" placeholder="Password (12345)">
+                </div>
+                <button id="submit-login" class="btn-submit">Unlock Vault</button>
+            </div>
+            <a href="landing.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to discovery</a>
+        </div>
+    </div>
+
+    <header class="glass-header">
+        <nav class="container">
+            <div class="logo">
+                <i class="fas fa-user-shield"></i>
+                <span>Admin<span>Panel</span></span>
+            </div>
+
+            <div class="nav-actions">
+                <button id="ai-generate-btn" class="btn-ai">
+                    <i class="fas fa-magic"></i>
+                    <span>AI Generate</span>
+                </button>
+                <button id="admin-toggle-btn" class="btn-icon" title="Add Recipe">
+                    <i class="fas fa-plus"></i>
+                </button>
+                <button id="logout-btn" class="btn-icon" title="Logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="admin-stats-bar">
+            <h1>Culinary <span>Database</span></h1>
+            <p>Manage recipes and control public visibility.</p>
+        </section>
+
+        <div id="recipe-grid" class="recipe-grid admin-grid">
+            <!-- Recipes managed here -->
+        </div>
+    </main>
+
+    <!-- Admin Panel Slider -->
+    <div id="admin-panel" class="admin-panel glass">
+        <div class="panel-header">
+            <h2><i class="fas fa-edit"></i> Recipe Editor</h2>
+            <button id="close-admin" class="btn-close">&times;</button>
+        </div>
+        <form id="recipe-form" class="panel-body">
+            <input type="hidden" id="edit-id">
+            <div class="form-group">
+                <label>Title</label>
+                <input type="text" id="recipe-title" required>
+            </div>
+            <div class="form-group">
+                <label>Category</label>
+                <select id="recipe-category">
+                    <option value="Breakfast">Breakfast</option>
+                    <option value="Lunch">Lunch</option>
+                    <option value="Dinner">Dinner</option>
+                    <option value="Dessert">Dessert</option>
+                    <option value="Healthy">Healthy</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Ingredients</label>
+                <textarea id="recipe-ingredients" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label>Steps</label>
+                <textarea id="recipe-steps" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label>Images</label>
+                <div class="image-upload-area" id="drop-zone">
+                    <p>Click to Upload or Drag & Drop</p>
+                    <input type="file" id="recipe-images" multiple accept="image/*" hidden>
+                </div>
+                <div id="image-previews" class="image-previews"></div>
+            </div>
+            <button type="submit" class="btn-submit" id="submit-btn">Save Changes</button>
+        </form>
+    </div>
+
+    <!-- AI Generation Modal -->
+    <div id="ai-modal" class="modal">
+        <div class="modal-content glass ai-generation">
+            <div class="ai-header">
+                <i class="fas fa-robot"></i>
+                <h2>AI Synthesis</h2>
+                <button id="close-ai" class="btn-close">&times;</button>
+            </div>
+            <div id="ai-loader" class="ai-loader">
+                <div class="pulse"></div>
+                <p>Generating culinary algorithm...</p>
+            </div>
+            <div id="ai-result" class="ai-result hidden">
+                <h3>Success: <span id="ai-gen-title"></span></h3>
+                <p>Recipe drafted in editor.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Preview -->
+    <div id="recipe-modal" class="modal">
+        <div class="modal-content glass">
+            <button id="close-modal" class="btn-close">&times;</button>
+            <div id="modal-details" class="modal-body-content"></div>
+        </div>
+    </div>
+
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
