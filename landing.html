@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RecipeVault | Premium Culinary Discovery</title>
+    <meta name="description" content="Discover exquisite recipes carefully curated for your culinary journey.">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="dark-theme">
+    <div id="canvas-container"></div>
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+
+    <header class="glass-header">
+        <nav class="container">
+            <div class="logo">
+                <i class="fas fa-utensils-alt"></i>
+                <span>Recipe<span>Vault</span></span>
+            </div>
+
+            <div class="search-container glass">
+                <i class="fas fa-search"></i>
+                <input type="text" id="search-input" placeholder="Find your next masterpiece...">
+            </div>
+
+            <div class="nav-actions">
+                <a href="index.html" class="btn-icon" title="Admin Panel"><i class="fas fa-cog"></i></a>
+                <button id="theme-toggle" class="btn-icon"><i class="fas fa-moon"></i></button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <h1 class="reveal-text">Epicurean <span>Library</span></h1>
+            <p class="reveal-text-sub">A curated selection of the world's most breathtaking flavors.</p>
+        </section>
+
+        <div class="filter-bar">
+            <button class="filter-btn active" data-category="all">All</button>
+            <button class="filter-btn" data-category="Breakfast">Breakfast</button>
+            <button class="filter-btn" data-category="Lunch">Lunch</button>
+            <button class="filter-btn" data-category="Dinner">Dinner</button>
+            <button class="filter-btn" data-category="Dessert">Dessert</button>
+            <button class="filter-btn" data-category="Healthy">Healthy</button>
+        </div>
+
+        <div id="recipe-grid" class="recipe-grid"></div>
+    </main>
+
+    <div id="recipe-modal" class="modal">
+        <div class="modal-content glass">
+            <button id="close-modal" class="btn-close">&times;</button>
+            <div id="modal-details" class="modal-body-content"></div>
+        </div>
+    </div>
+
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
